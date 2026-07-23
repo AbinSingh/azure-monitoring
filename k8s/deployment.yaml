@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: hello-fastapi
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: hello-fastapi
+
+  template:
+
+    metadata:
+      labels:
+        app: hello-fastapi
+
+    spec:
+
+      containers:
+
+      - name: hello-fastapi
+
+        image: akspracticeacr26abin.azurecr.io/hello-fastapi:v1
+
+        imagePullPolicy: Always
+
+        ports:
+
+        - containerPort: 8000
