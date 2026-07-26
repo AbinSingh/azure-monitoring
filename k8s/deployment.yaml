@@ -23,7 +23,7 @@ spec:
 
       - name: hello-fastapi
 
-        image: akspracticeacr26abin.azurecr.io/hello-fastapi:v1
+        image: akspracticeacr26abin.azurecr.io/hello-fastapi:v4
 
         imagePullPolicy: Always
 
@@ -34,6 +34,13 @@ spec:
         envFrom:
           - configMapRef:
               name: hello-fastapi-config
+
+        env:
+          - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+            valueFrom:
+              secretKeyRef:
+                name: appinsights-secret
+                key: APPLICATIONINSIGHTS_CONNECTION_STRING
 
         readinessProbe:
           httpGet:
